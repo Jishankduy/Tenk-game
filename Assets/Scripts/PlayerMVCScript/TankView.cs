@@ -5,21 +5,21 @@ using UnityEngine;
 public class TankView : MonoBehaviour
 {
     private TankController tankController;
-
-    public Joystick joystick;
+    public TankType tankType;
+    
     private float movement;
     private float rotation;
     public Rigidbody rb;
+   
 
-    // Start is called before the first frame update
     void Start()
-    {
-        GameObject cam = GameObject.Find("TankCamera");
+    { 
+        GameObject cam = GameObject.FindWithTag("MainCamera");
         cam.transform.SetParent(transform);
         cam.transform.position = new Vector3(0.34f, 2.343f, -1.24f);
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         Movement();
@@ -33,7 +33,7 @@ public class TankView : MonoBehaviour
     private void Movement()
     {
         movement = Input.GetAxis("Vertical");
-        rotation = joystick.Horizontal;
+        rotation = Input.GetAxis("Horizontal");
     }
 
 
@@ -46,4 +46,6 @@ public class TankView : MonoBehaviour
     {
         return rb;
     }
+
+   
 }

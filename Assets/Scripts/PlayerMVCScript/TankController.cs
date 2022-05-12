@@ -1,12 +1,13 @@
 using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 public class TankController
 {
-    private TankModel tankModel;  //referencse of TankModel Script
-
-    private TankView tankView;    //referencse of TankView Script
-
+    private TankModel tankModel;  
+    private TankView tankView;
     private Rigidbody rb;
+     
 
     public TankController(TankModel _tankModel, TankView _tankView)  //Constrocter for References other Script
     { 
@@ -15,9 +16,7 @@ public class TankController
         rb = tankView.GetRigidbody();
         tankModel.SetTankController(this);
         tankView.SetTankController(this);
-
         
-
     }
 
     public void Move(float movement, float MovementSpeed)
@@ -36,7 +35,7 @@ public class TankController
     {
         return tankModel;
     }
-    
+
     public float getMovementSpeed()
     {
         return tankModel.movementSpeed;
