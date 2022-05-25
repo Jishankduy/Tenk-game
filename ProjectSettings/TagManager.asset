@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - GameArea
+  - Tank
+  - WayPoint
   - Bullet
-  - EnemyTank
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - GameArea
-  - 
-  - 
+  - Player
+  - Bullet
+  - Enemy
   - 
   - 
   - 

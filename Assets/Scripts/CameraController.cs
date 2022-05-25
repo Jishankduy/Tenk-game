@@ -1,22 +1,70 @@
-﻿using System.Collections;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+
+//public class CameraController : MonoBehaviour
+//{
+//    public Transform playerTank;
+//    //private TankType tankType;
+   
+
+//    private void LateUpdate()
+//    {
+//        transform.position = playerTank.position;
+//    }
+//}
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject player;
+    public Transform playerTank;
+    public Vector3 offset;
+    public Camera camera;
+    private float CameraZoomOutSpeed = 0.0001f;
 
-    private Vector3 offset;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        offset = transform.position - player.transform.position;
+        playerTank = FindObjectOfType<TankView>().transform;
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        transform.position = player.transform.position + offset;
+        CheckPlayer();
+        transform.position = playerTank.transform.position + offset;
     }
+
+    private void CheckPlayer()
+    {
+        if (playerTank == null)
+        {
+            playerTank = transform;
+            return;
+        }
+    }
+
+    private void LateUpdate()
+    {
+
+        offset = transform.position - playerTank.transform.position;
+
+    }
+    public IEnumerator ZoomOutCamera()  
+    {
+        Debug.Log("zoom out hoja yaar");
+        float lerp = 0.01f;
+        //camera.transform.SetParent(null);
+        while (camera.orthographicSize < 30)
+        {
+            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 30, lerp);
+            lerp = lerp + CameraZoomOutSpeed;
+            yield return new WaitForSeconds(0.01f);
+        }
+
+    }
+
+
 }
