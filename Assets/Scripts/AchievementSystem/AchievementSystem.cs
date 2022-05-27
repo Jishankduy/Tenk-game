@@ -17,7 +17,7 @@ public class AchievementSystem : SingletonGeneric<AchievementSystem>
     private int count = 0;
     public int Killed = 0;
     public TextMeshProUGUI text1;
-    public TextMeshProUGUI text2;
+  //  public TextMeshProUGUI text2;
 
 
     void Start()
