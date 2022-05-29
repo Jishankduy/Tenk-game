@@ -17,7 +17,7 @@ public class AchievementSystem : SingletonGeneric<AchievementSystem>
     private int count = 0;
     public int Killed = 0;
     public TextMeshProUGUI text1;
-  //  public TextMeshProUGUI text2;
+    public TextMeshProUGUI text2;
 
 
     void Start()
@@ -32,7 +32,7 @@ public class AchievementSystem : SingletonGeneric<AchievementSystem>
     public void BulletsFiredCountCheck(int bulletCount)
     {
         count = bulletCount;
-        text1.text = "Fired :- " + count;
+        text1.text = " " + count;
 
         for (int i = 0; i < achievementSOList.bulletsFiredAchievementSO.achievements.Length; i++)
         {
@@ -69,7 +69,7 @@ public class AchievementSystem : SingletonGeneric<AchievementSystem>
         this.AchievementName.text = AchievementName;
         this.AchievementInfo.text = AchievementInfo;
         AchievementPanel.gameObject.SetActive(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(0.5f);
         AchievementPanel.gameObject.SetActive(false);
     }
 

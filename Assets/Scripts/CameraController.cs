@@ -1,18 +1,3 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class CameraController : MonoBehaviour
-//{
-//    public Transform playerTank;
-//    //private TankType tankType;
-   
-
-//    private void LateUpdate()
-//    {
-//        transform.position = playerTank.position;
-//    }
-//}
 
 using System.Collections;
 using System.Collections.Generic;
@@ -22,8 +7,9 @@ public class CameraController : MonoBehaviour
 {
     public Transform playerTank;
     public Vector3 offset;
-    public Camera camera;
+    public Camera cam;
     private float CameraZoomOutSpeed = 0.0001f;
+    public DestroyPlatform destroyPlatform;
 
 
     public void Start()
@@ -34,32 +20,34 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         CheckPlayer();
-        transform.position = playerTank.transform.position + offset;
+        //transform.position = playerTank.transform.position + offset;
     }
 
     private void CheckPlayer()
     {
-        if (playerTank == null)
+        if (playerTank != null)
         {
-            playerTank = transform;
-            return;
+            //playerTank = transform;
+            transform.position = playerTank.transform.position;
+            return;   
         }
+        else if (playerTank == null)
+        {
+            ZoomOutCamera();
+            destroyPlatform.DestroyGD();
+
+        }
+
     }
 
-    private void LateUpdate()
-    {
-
-        offset = transform.position - playerTank.transform.position;
-
-    }
     public IEnumerator ZoomOutCamera()  
     {
         Debug.Log("zoom out hoja yaar");
         float lerp = 0.01f;
         //camera.transform.SetParent(null);
-        while (camera.orthographicSize < 30)
+        while (cam.orthographicSize < 30)
         {
-            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 30, lerp);
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 30, lerp);
             lerp = lerp + CameraZoomOutSpeed;
             yield return new WaitForSeconds(0.01f);
         }

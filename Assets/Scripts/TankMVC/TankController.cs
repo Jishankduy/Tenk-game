@@ -106,7 +106,9 @@ public class TankController
             TankModel.currentHealth = 0;
             SetHealthUI();
             TankDestroy();
+            TankService.instance.CallZoomOutCamera();
             return;
+
         }
         SetHealthUI();
     }

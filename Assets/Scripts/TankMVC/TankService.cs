@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class TankService : SingletonGeneric<TankService>
 {
     public PlayerTankViewList playerTankViewList;
+    public DestroyPlatform destroyPlatform;
     public TankController tankController;
     public TankScriptableObjectList TankList;
     public BulletScriptableObjectList BulletList;
@@ -23,21 +24,21 @@ public class TankService : SingletonGeneric<TankService>
     //bullet and tank equalized
     public int TType;
     //public TankType tType;
- 
-    
+
+
 
     private void Start()
     {
-        StartGame();       
+        StartGame();
     }
-   
+
     private void StartGame()
     {
         tankController = CreateNewPlayerTank();
 
     }
-     
-   
+
+
     // This Function Creates a new Player Tank MVC & also set all the required references and returns the Tank Controller of the same.
     private TankController CreateNewPlayerTank()
     {
@@ -49,9 +50,9 @@ public class TankService : SingletonGeneric<TankService>
         tankController.TankView.SetTankControllerReference(tankController);
         ///enemyTank.Player = tankController.GetTransform();
         return tankController;
-        
+
     }
-   
+
 
 
 
@@ -67,5 +68,10 @@ public class TankService : SingletonGeneric<TankService>
 
     }
 
+    public void CallZoomOutCamera()
+    {
+
+        StartCoroutine(cam.ZoomOutCamera());
+    }
 
 }
